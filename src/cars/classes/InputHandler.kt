@@ -1,4 +1,4 @@
-package Cars.Classes
+package cars.classes
 
 class InputHandler {
 }
