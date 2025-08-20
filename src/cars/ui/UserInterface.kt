@@ -1,4 +1,7 @@
-package cars.classes
+package cars.ui
+
+import cars.data.Car
+import cars.utils.*
 
 class UserInterface(var carList : List<Car>) {
     var position : Int = 0
@@ -11,17 +14,19 @@ class UserInterface(var carList : List<Car>) {
                 0 -> toMainMenu()
                 1 -> toDisplayMenu()
                 2 -> toSortMenu()
-                3 -> if (confirmAction()) ByteIO.saveCars(carList)
-                4 -> if (confirmAction()) carList = ByteIO.loadCars()
+                3 -> if (confirmAction()) {
+                    ByteIO.saveCars(carList); position = 0}
+                4 -> if (confirmAction()) {carList = ByteIO.loadCars(); position = 0}
                 5 -> if (confirmAction()) {println("Goodbye!"); programIsAlive = false}
             }
         }
+
+        position = 0
     }
 
     fun confirmAction(): Boolean {
         println("Are you sure? [Y/N]")
-        if (readln().equals("y", true)) return true
-        else return false
+        return readln().equals("y", true)
     }
 
     fun toMainMenu() {

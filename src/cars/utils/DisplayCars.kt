@@ -1,4 +1,6 @@
-package cars.classes
+package cars.utils
+
+import cars.data.Car
 
 object DisplayCars {
 
@@ -29,6 +31,7 @@ object DisplayCars {
         when {
             category.equals("make", true) -> {
                 val makesFound: MutableList<String> = mutableListOf()
+                println("Makes Found:")
                 for (car in cars) {
                     makesFound.add(car.make)
                 }
@@ -48,6 +51,7 @@ object DisplayCars {
 
             category.equals("model", true) -> {
                 val modelsFound: MutableList<String> = mutableListOf()
+                println("Models Found:")
                 for (car in cars) {
                     modelsFound.add("${car.make}: ${car.model}")
                 }

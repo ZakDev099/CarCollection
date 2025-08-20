@@ -1,8 +1,8 @@
-package cars.classes
+package cars.data
 
 import java.io.Serializable
 
-class Car (val make : String, val model : String, val year: Int, val odometer : Int = 0) : Serializable {
+data class Car (val make : String, val model : String, val year: Int, val odometer : Int = 0) : Serializable {
     var condition = "New"
 
     init {
