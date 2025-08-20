@@ -1,6 +1,6 @@
 package cars.classes
 
-class UserInterface(val carList : List<Car>) {
+class UserInterface(var carList : List<Car>) {
     var position : Int = 0
 
     fun menuController() {
@@ -11,9 +11,17 @@ class UserInterface(val carList : List<Car>) {
                 0 -> toMainMenu()
                 1 -> toDisplayMenu()
                 2 -> toSortMenu()
-                5 -> {println("Goodbye!"); programIsAlive = false}
+                3 -> if (confirmAction()) ByteIO.saveCars(carList)
+                4 -> if (confirmAction()) carList = ByteIO.loadCars()
+                5 -> if (confirmAction()) {println("Goodbye!"); programIsAlive = false}
             }
         }
+    }
+
+    fun confirmAction(): Boolean {
+        println("Are you sure? [Y/N]")
+        if (readln().equals("y", true)) return true
+        else return false
     }
 
     fun toMainMenu() {
