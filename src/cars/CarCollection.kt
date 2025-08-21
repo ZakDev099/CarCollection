@@ -25,7 +25,7 @@ fun main(){
         Car("Test", "Vehicle", 2000, 100000),
     )
 
-    // Create UI object and run program loop
+    // Create UI and run program loop
     val userInterface = UserInterface(carList)
     userInterface.menuController()
     // Restart UI with a new car list
