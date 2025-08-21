@@ -10,11 +10,11 @@ object InputHandler {
      *
      * @return A non-nullable integer.
      */
-    fun retrieveInt() : Int {
+    fun retrieveInt(): Int {
         var inputIsValid = false
         var result = 0
 
-        while(!inputIsValid) {
+        while (!inputIsValid) {
             val userInput = readln().toIntOrNull()
             if (userInput != null) {
                 result = userInput
@@ -33,10 +33,10 @@ object InputHandler {
      * @param validInputs an IntRange of acceptable inputs.
      * @return A non-nullable integer within range of validInputs.
      */
-    fun retrieveInt(validInputs : IntRange) : Int {
+    fun retrieveInt(validInputs: IntRange): Int {
         var inputIsValid = false
         var result = 0
-        while(!inputIsValid) {
+        while (!inputIsValid) {
             val userInput = readln().toIntOrNull()
             if (userInput != null && userInput in validInputs) {
                 result = userInput

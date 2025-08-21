@@ -13,7 +13,7 @@ object ByteIO {
      *
      * @param cars A list of Cars.
      */
-    fun saveCars(cars : List<Car>) {
+    fun saveCars(cars: List<Car>) {
         try {
             println("Saving cars to cars.dat...")
             FileOutputStream("cars.dat").use { fileOut ->
@@ -46,9 +46,9 @@ object ByteIO {
                 }
             }
             println("\nUpdated cars!")
-        } catch(e: IOException) {
+        } catch (e: IOException) {
             println(e)
-        } catch(e: ClassNotFoundException) {
+        } catch (e: ClassNotFoundException) {
             println(e)
         } catch (e: Exception) {
             println(e)

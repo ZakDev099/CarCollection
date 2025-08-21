@@ -1,7 +1,9 @@
 package cars.ui
 
 import cars.data.Car
-import cars.utils.*
+import cars.utils.ByteIO
+import cars.utils.DisplayCars
+import cars.utils.InputHandler
 
 /**
  * The user interface for the program. Handles menu logic.
@@ -9,11 +11,11 @@ import cars.utils.*
  * @property carList Currently loaded list of cars to display.
  * @constructor Creates a user interface with a list of cars.
  */
-class UserInterface(var carList : List<Car>) {
+class UserInterface(var carList: List<Car>) {
     /**
      * @property position Menu state tracker for the menu controller.
      */
-    var position : Int = 0
+    var position: Int = 0
 
     /**
      * Central program controller, tracks the root menu state.
@@ -30,19 +32,27 @@ class UserInterface(var carList : List<Car>) {
                 3 -> if (InputHandler.confirmAction()) {
                     ByteIO.saveCars(carList)
                     position = 0
-                } else { position = 0 }
+                } else {
+                    position = 0
+                }
 
                 4 -> if (InputHandler.confirmAction()) {
                     carList = ByteIO.loadCars()
                     position = 0
-                } else { position = 0 }
+                } else {
+                    position = 0
+                }
 
                 5 -> if (InputHandler.confirmAction()) {
                     println("Goodbye!")
                     programIsAlive = false
-                } else { position = 0 }
+                } else {
+                    position = 0
+                }
 
-                else -> {println("Invalid menu selection - returning to Main Menu."); position = 0}
+                else -> {
+                    println("Invalid menu selection - returning to Main Menu."); position = 0
+                }
             }
         }
 
@@ -53,7 +63,8 @@ class UserInterface(var carList : List<Car>) {
      * Displays the main menu, and updates the menu position from user input. Users can access sub-menus from here.
      */
     fun toMainMenu() {
-        println("""
+        println(
+            """
             |   CAR COLLECTION!
             |   
             |   1. Display
@@ -63,7 +74,8 @@ class UserInterface(var carList : List<Car>) {
             |   5. Exit
             
             Please selection an option:
-        """.trimIndent())
+        """.trimIndent()
+        )
 
         position = InputHandler.retrieveInt(1..5)
     }
@@ -72,7 +84,8 @@ class UserInterface(var carList : List<Car>) {
      * Takes user input and calls display methods to show the user all cars or only cars that fulfil a condition.
      */
     fun toDisplayMenu() {
-        println("""
+        println(
+            """
             |   DISPLAY ONLY
             |
             |   0. <<<
@@ -84,7 +97,8 @@ class UserInterface(var carList : List<Car>) {
             |   6. Search Year
             
             Please selection an option:
-        """.trimIndent())
+        """.trimIndent()
+        )
 
         val userInput = InputHandler.retrieveInt(0..6)
         when (userInput) {
@@ -101,8 +115,9 @@ class UserInterface(var carList : List<Car>) {
     /**
      * Takes user input and calls displays a sorted list of all cars by a given property.
      */
-    fun toSortMenu(){
-        println("""
+    fun toSortMenu() {
+        println(
+            """
             |   DISPLAY SORTED
             |
             |   0. <<<
@@ -112,11 +127,12 @@ class UserInterface(var carList : List<Car>) {
             |   4. By Condition 
             
             Please selection an option:
-        """.trimIndent())
+        """.trimIndent()
+        )
 
         val userInput = InputHandler.retrieveInt(0..4)
 
-        when(userInput) {
+        when (userInput) {
             0 -> position = 0
             1 -> DisplayCars.displaySorted(carList, "make")
             2 -> DisplayCars.displaySorted(carList, "model")

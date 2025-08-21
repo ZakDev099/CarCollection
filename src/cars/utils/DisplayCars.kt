@@ -31,11 +31,16 @@ object DisplayCars {
         var carsFound = 0
         for (car in cars) {
             when {
-                (car.condition.equals("new", true) && showNew) -> {car.display(); carsFound++}
-                (car.condition.equals("used", true) && !showNew) -> {car.display(); carsFound++}
+                (car.condition.equals("new", true) && showNew) -> {
+                    car.display(); carsFound++
+                }
+
+                (car.condition.equals("used", true) && !showNew) -> {
+                    car.display(); carsFound++
+                }
             }
         }
-        println("$carsFound ${if(showNew)"new" else "used"} cars were found.")
+        println("$carsFound ${if (showNew) "new" else "used"} cars were found.")
         InputHandler.retrieveEnter()
     }
 
@@ -60,37 +65,51 @@ object DisplayCars {
                 } else break
                 // Displaying a preview of distinct makes contained in the list to help the user search.
                 println("${category}s found: ")
-                itemsFound.distinct().forEach {println("[$it]")}
+                itemsFound.distinct().forEach { println("[$it]") }
                 if (itemsFound.size > maxPreview) println("...")
                 // Then prompting for search input...
                 println("\nEnter value to search: ")
                 userInput = readln()
                 for (car in cars) {
-                    if (userInput.contains(car.make, true)) {car.display(); carsFound++}
+                    if (userInput.contains(car.make, true)) {
+                        car.display(); carsFound++
+                    }
                 }
-            } "model" -> {
+            }
+
+            "model" -> {
                 for (car in cars) if (itemsFound.size <= maxPreview) {
                     itemsFound.add(car.model)
                 } else break
                 // Displaying a preview of distinct models contained in the list to help the user search.
                 println("${category}s found: ")
-                itemsFound.distinct().forEach {println("[$it]")}
+                itemsFound.distinct().forEach { println("[$it]") }
                 if (itemsFound.size > maxPreview) println("...")
                 // Then prompting for search input...
                 println("\nEnter value to search: ")
                 userInput = readln()
                 for (car in cars) {
-                    if (userInput.contains(car.model, true)) {car.display(); carsFound++}
+                    if (userInput.contains(car.model, true)) {
+                        car.display(); carsFound++
+                    }
                 }
-            } "year" -> {
+            }
+
+            "year" -> {
                 // Skips preview and just prompts for search input
                 println("\nEnter value to search: ")
                 val intInput = InputHandler.retrieveInt()
                 for (car in cars) {
-                    if (intInput == car.year) {car.display(); carsFound++}
+                    if (intInput == car.year) {
+                        car.display(); carsFound++
+                    }
                 }
                 userInput = intInput.toString()
-            } else -> {println("Error"); return}
+            }
+
+            else -> {
+                println("Error"); return
+            }
         }
         println("$carsFound cars were found for '$userInput'")
         InputHandler.retrieveEnter()

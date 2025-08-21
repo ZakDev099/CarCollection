@@ -3,7 +3,7 @@ package cars
 import cars.data.Car
 import cars.ui.UserInterface
 
-fun main(){
+fun main() {
     // Initializing Car objects into a list
     val carList = listOf(
         Car("Toyota", "Corolla", 2024, 0),
